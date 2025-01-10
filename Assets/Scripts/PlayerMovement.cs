@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canFire = true;
 
-    // Reference to the SoundFXManagerPlayer script
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
 
     private void Start()
@@ -37,12 +36,11 @@ public class PlayerMovement : MonoBehaviour
         rb.useGravity = false;
 
 
-        // Find and assign the SoundFXManagerPlayer script
         soundFXManager = GetComponentInChildren<SoundFXManagerPlayer>();
 
         if (soundFXManager == null)
         {
-            Debug.LogError("SoundFXManagerPlayer not found as a child of Player!");
+            Debug.LogError("SoundFXManagerPlayer Missing");
         }
     }
 
@@ -55,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
             speed = runSpeed;
             dashSystem.dashCapacity -= 18.8f * Time.deltaTime;
 
-            // Play running sound
             //soundFXManager?.PlaySound("Run");
         }
         if (Input.GetKeyUp(KeyCode.LeftShift) || dashSystem.dashCapacity < 1.0f || dashSystem.isFilling)
