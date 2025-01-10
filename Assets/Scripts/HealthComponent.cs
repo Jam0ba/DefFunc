@@ -21,7 +21,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        Debug.log("Start");
         if (soundFXManagerEnemy == null || soundFXManagerPlayer == null)
         {
             return;
