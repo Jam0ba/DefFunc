@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
     public IObjectPool<GameObject> bulletPool;
     private float speed = 20f;               
-    private int DamageAmount = 10;
+    private float DamageAmount = 32;
 
     private void Start()
     {

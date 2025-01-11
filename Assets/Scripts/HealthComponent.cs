@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class HealthComponent : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int _maxHP = 100;
-    [SerializeField] private int _currentHP;
+    [SerializeField] private float _maxHP = 100;
+    [SerializeField] private float _currentHP;
 
-    public int CurrentHealth { get => _currentHP; private set => _currentHP = value; }
-    public int MaxHealth { get => _maxHP; private set => _maxHP = value; }
+    public float CurrentHealth { get => _currentHP; private set => _currentHP = value; }
+    public float MaxHealth { get => _maxHP; private set => _maxHP = value; }
 
     public bool IsDead => CurrentHealth <= 0;
 
@@ -17,10 +17,9 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        Debug.Log($"CurrentHealth after damage: {CurrentHealth}");
 
         if (CurrentHealth <= 0)
         {
