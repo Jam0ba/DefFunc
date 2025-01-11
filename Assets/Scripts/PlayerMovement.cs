@@ -17,10 +17,12 @@ public class PlayerMovement : MonoBehaviour
     private bool canFire = true;
 
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
+    [SerializeField] private Slider healthSlider;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        healthSlider.maxValue = 100;
 
         healthComponent = GetComponent<HealthComponent>();
         soundFXManager = GetComponentInChildren<SoundFXManagerPlayer>();
@@ -51,7 +53,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayHitSound()
     {
+        healthSlider.maxValue = 100;
+        healthSlider.value = healthComponent.CurrentHealth;
+
         soundFXManager?.PlaySound("Hit");
+
+        
     }
 
     private void ShootBullet()
