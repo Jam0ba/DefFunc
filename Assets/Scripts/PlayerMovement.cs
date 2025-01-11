@@ -10,10 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     public Transform shootPosition;
     public BulletPool bulletPool;
+    private HealthComponent healthComponent;
 
     private Rigidbody rb;
     private Vector3 movement;
-
     private bool canFire = true;
 
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-
+        healthComponent = GetComponent<HealthComponent>();
         soundFXManager = GetComponentInChildren<SoundFXManagerPlayer>();
 
     }
@@ -41,11 +41,17 @@ public class PlayerMovement : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
 
+
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+    }
+
+    public void PlayHitSound()
+    {
+        soundFXManager?.PlaySound("Hit");
     }
 
     private void ShootBullet()

@@ -29,10 +29,11 @@ public class Bullet : MonoBehaviour
         if (bulletPool != null)
         {
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            Enemy enemy = collision.gameObject.GetComponentInChildren<Enemy>();
             if (damageable != null)
             {
-                Debug.Log($"Applying {DamageAmount} damage to {collision.gameObject.name}");
                 damageable.TakeDamage(DamageAmount);
+                enemy.PlayHitSound();
             }
             ReturnToPool();
         }

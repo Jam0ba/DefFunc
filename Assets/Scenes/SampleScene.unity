@@ -2291,8 +2291,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.238861, y: 1.8219066, z: 2.6494637}
-  m_Center: {x: -0.00070858, y: 0.2023296, z: 0.25704932}
+  m_Size: {x: 2.238861, y: 2.4463055, z: 2.6494637}
+  m_Center: {x: -0.00070858, y: 0.5145291, z: 0.25704932}
 --- !u!54 &8050914854550986011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2333,8 +2333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 100
-  soundFXManagerEnemy: {fileID: 0}
-  soundFXManagerPlayer: {fileID: 238653568}
   _currentHP: 0
 --- !u!114 &8050914854550986014
 MonoBehaviour:
