@@ -12,15 +12,17 @@ public class HealthComponent : MonoBehaviour, IDamageable
     public int CurrentHealth { get => _currentHP; private set => _currentHP = value; }
     public int MaxHealth { get => _maxHP; private set => _maxHP = value; }
 
-    private void Awake()
-    {
-        CurrentHealth = MaxHealth;
-        healthSliderPlayer.maxValue = MaxHealth;
-        healthSliderPlayer.value = CurrentHealth;
-    }
+
 
     private void Start()
     {
+        if (healthSliderPlayer != null)
+        {
+            CurrentHealth = MaxHealth;
+            healthSliderPlayer.maxValue = MaxHealth;
+            healthSliderPlayer.value = CurrentHealth;
+        }
+
         if (soundFXManagerEnemy == null || soundFXManagerPlayer == null)
         {
             return;
