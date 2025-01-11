@@ -21,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.useGravity = false;
 
 
         soundFXManager = GetComponentInChildren<SoundFXManagerPlayer>();

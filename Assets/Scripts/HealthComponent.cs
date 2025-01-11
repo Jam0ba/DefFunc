@@ -7,7 +7,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
     [SerializeField] private SoundFXManagerEnemy soundFXManagerEnemy;
     [SerializeField] private SoundFXManagerPlayer soundFXManagerPlayer;
     [SerializeField] private int _currentHP;
-    [SerializeField] private Slider healthSliderPlayer;
 
     public int CurrentHealth { get => _currentHP; private set => _currentHP = value; }
     public int MaxHealth { get => _maxHP; private set => _maxHP = value; }
@@ -16,12 +15,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        if (healthSliderPlayer != null)
-        {
-            CurrentHealth = MaxHealth;
-            healthSliderPlayer.maxValue = MaxHealth;
-            healthSliderPlayer.value = CurrentHealth;
-        }
+        CurrentHealth = MaxHealth;
 
         if (soundFXManagerEnemy == null || soundFXManagerPlayer == null)
         {
@@ -35,7 +29,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
         Debug.Log($"CurrentHealth after damage: {CurrentHealth}");
         soundFXManagerEnemy?.PlaySound("Hit");
         soundFXManagerPlayer?.PlaySound("Hit");
-        healthSliderPlayer.value = CurrentHealth;
 
         if (CurrentHealth <= 0)
         {
@@ -43,16 +36,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
             OnDeath();
         }
     }
-    /*
-    public void Heal(int healAmount)
-    {
-        CurrentHealth += healAmount;
-        if (CurrentHealth > MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
-    }
-    */
     public bool IsDead => CurrentHealth <= 0;
 
     private void OnDeath()
