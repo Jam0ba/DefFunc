@@ -4,20 +4,35 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    private float fireRate = 0.2f;
+    private float moveSpeed = 5f;
+    private float rotationSpeed = 120.0f;
+    private float wheelRotationSpeed = 200.0f;
+
+    private float moveInput;
+    private float rotationInput;
+
+    [SerializeField] private GameObject[] leftWheel;
+    [SerializeField] private GameObject[] rightWheel;
+
+    private Rigidbody rb;
+
+
+
+    private float fireRate = 0.5f;
 
     [Space]
     public Transform shootPosition;
     public BulletPool bulletPool;
-    private HealthComponent healthComponent;
-
-    private Rigidbody rb;
-    private Vector3 movement;
-    private bool canFire = true;
-
+    [Space]
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
     [SerializeField] private Slider healthSlider;
+    private HealthComponent healthComponent;
+
+    
+
+    private bool canFire = true;
+
+
 
     private void Start()
     {
@@ -39,16 +54,53 @@ public class PlayerMovement : MonoBehaviour
             soundFXManager?.PlaySound("Shoot");
         }
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
+        moveInput = Input.GetAxis("Vertical");
+        rotationInput = Input.GetAxis("Horizontal");
+
+        TankWheelRotation(moveInput, rotationInput);
 
 
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        MoveTank(moveInput);
+        RotateTank(rotationInput);
+    }
+
+    private void MoveTank(float input)
+    {
+        Vector3 moveDirection = transform.forward * input * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + moveDirection);
+    }
+    private void RotateTank(float input)
+    {
+        float rotation = input * rotationSpeed * Time.fixedDeltaTime;
+        Quaternion turnRotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+        rb.MoveRotation(rb.rotation * turnRotation);
+    }
+
+    private void TankWheelRotation(float moveInput, float rotationInput)
+    {
+        float wheelRotation = moveInput * wheelRotationSpeed * Time.deltaTime;
+
+        //Left Wheels
+        foreach(GameObject wheel in leftWheel)
+        {
+            if(wheel != null)
+            {
+                wheel.transform.Rotate(wheelRotation - rotationInput * wheelRotationSpeed * Time.deltaTime, 0.0f, 0.0f);
+            }
+        }
+
+        //Right Wheels
+        foreach (GameObject wheel in rightWheel)
+        {
+            if (wheel != null)
+            {
+                wheel.transform.Rotate(wheelRotation + rotationInput * wheelRotationSpeed * Time.deltaTime, 0.0f, 0.0f);
+            }
+        }
     }
 
     public void PlayHitSound()
