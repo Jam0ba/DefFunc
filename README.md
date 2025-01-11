@@ -1,3 +1,3 @@
 # DefFunc
 
-Bad Code Run
+Its not much, but its honest work.
