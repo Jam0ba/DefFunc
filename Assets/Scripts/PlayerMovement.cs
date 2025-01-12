@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private ParticleSystem exhaust;
 
     private void Start()
     {
@@ -65,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 moveDirection = transform.forward * input * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + moveDirection);
+
+
+
     }
     private void RotateTank(float input)
     {
