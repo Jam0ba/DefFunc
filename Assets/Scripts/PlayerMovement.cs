@@ -5,9 +5,9 @@ using static UnityEngine.ParticleSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float moveSpeed = 5f;
+    private float moveSpeed = 8f;
     private float rotationSpeed = 120.0f;
-    private float wheelRotationSpeed = 200.0f;
+    private float wheelRotationSpeed = 800.0f;
     private float fireRate = 0.5f;
 
     private float moveInput;
