@@ -31,8 +31,11 @@ public class Enemy : MonoBehaviour
 
     public void PlayHitSound()
     {
-        soundFXManager?.PlaySound("Hit");
-        healthBarImg.fillAmount = healthComponent.CurrentHealth / healthComponent.MaxHealth;
-
+        if(healthComponent.CurrentHealth > 0.0f)
+        {
+            soundFXManager.PlaySound("Hit");
+            healthBarImg.fillAmount = healthComponent.CurrentHealth / healthComponent.MaxHealth;
+        }
+        
     }
 }

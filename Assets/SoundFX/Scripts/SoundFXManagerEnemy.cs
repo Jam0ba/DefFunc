@@ -31,23 +31,29 @@ public class SoundFXManagerEnemy : MonoBehaviour
 
     public void PlaySound(string soundName)
     {
-        if (soundEffects.TryGetValue(soundName, out AudioClip clip))
+        if (audioSource != null)
         {
-            audioSource.clip = clip;
-            audioSource.Play();
+
+            if (soundEffects.TryGetValue(soundName, out AudioClip clip))
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
-        else
-        {
-            Debug.LogWarning($"Sound '{soundName}' not found in SoundFXManagerPlayer!");
-        }
+
     }
 
 
     public void StopSound()
     {
-        if (audioSource.isPlaying)
+        if(audioSource != null)
         {
-            audioSource.Stop();
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
+
+
     }
 }

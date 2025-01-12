@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
             {
                 damageable.TakeDamage(DamageAmount);
                 enemy.PlayHitSound();
+
             }
             ReturnToPool();
         }
