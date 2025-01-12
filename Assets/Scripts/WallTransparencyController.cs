@@ -4,26 +4,26 @@ public class WallTransparencyController : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask wallLayer;
-    [Space]
     [SerializeField] private float transparentAlpha = 0.3f;
 
-
-    private Camera _cam;
+    private Camera cam;
     private Material originalMaterial;
     private GameObject lastWall;
 
-    void Update()
+    private void Awake()
     {
-        HandleWallTransparency();
-        _cam = GetComponent<Camera>();
+        cam = GetComponent<Camera>();
     }
 
-    void HandleWallTransparency()
+    private void Update()
     {
-        Ray ray = new Ray(_cam.transform.position, player.position - _cam.transform.position);
-        RaycastHit hit;
+        HandleWallTransparency();
+    }
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, wallLayer))
+    private void HandleWallTransparency()
+    {
+        Ray ray = new Ray(cam.transform.position, player.position - cam.transform.position);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, wallLayer))
         {
             GameObject hitWall = hit.collider.gameObject;
 
@@ -51,7 +51,7 @@ public class WallTransparencyController : MonoBehaviour
         }
     }
 
-    void ResetLastWall()
+    private void ResetLastWall()
     {
         if (lastWall != null)
         {

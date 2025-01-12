@@ -283,8 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d052a31fcb23a8047a600352e60abb15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 100
-  _currentHP: 0
+  maxHP: 100
 --- !u!195 &8758234883397875847
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -410,8 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d052a31fcb23a8047a600352e60abb15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 100
-  _currentHP: 0
+  maxHP: 100
 --- !u!1 &6038483136046984542
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +651,7 @@ MonoBehaviour:
   soundFXManager: {fileID: 5758296781740918564}
   healthComponent: {fileID: 452423779151203430}
   enemyOBJ: {fileID: 11400000, guid: 5dd4299846d47ed42bd454cfc0e602e7, type: 2}
+  BOOMParticle: {fileID: 6456570388918413328, guid: f382eb79226111540a588d5c34aa5331, type: 3}
 --- !u!82 &8619155964363180851
 AudioSource:
   m_ObjectHideFlags: 0

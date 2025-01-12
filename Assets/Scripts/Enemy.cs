@@ -8,11 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SoundFXManagerEnemy soundFXManager;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private EnemyRes enemyOBJ;
+    [SerializeField] private GameObject BOOMParticle;
 
 
     private void Start()
     {
         healthComponent = GetComponentInParent<HealthComponent>();
+
 
     }
     private void OnTriggerEnter(Collider other)
@@ -22,16 +24,21 @@ public class Enemy : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(enemyOBJ.enemyDamage);
-            player.PlayHitSound();
+            player?.PlayHitSound();
         }
     }
     public void PlayHitSound()
     {
-        if(healthComponent.CurrentHealth > 0.0f)
+        if (healthComponent.CurrentHealth > 0.0f)
         {
             soundFXManager.PlaySound(enemyOBJ.enemyHitSound);
             healthBarImg.fillAmount = healthComponent.CurrentHealth / healthComponent.MaxHealth;
         }
-        
+        else
+        {
+            GameObject Particle = Instantiate(BOOMParticle, transform.position, transform.rotation);
+
+        }
+        soundFXManager?.PlaySound(enemyOBJ.enemyHitSound);
     }
 }

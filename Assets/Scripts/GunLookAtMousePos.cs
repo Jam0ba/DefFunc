@@ -10,8 +10,6 @@ public class GunLookAtMousePos : MonoBehaviour
     {
         RotateTowardsMouse();
     }
-
-
     private void RotateTowardsMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-
-
     [SerializeField] private EnemyRes enemyOBJ;
-
-
     private void Start()
     {
         Destroy(gameObject, 3.5f);

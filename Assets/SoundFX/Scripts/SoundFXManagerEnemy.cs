@@ -5,19 +5,16 @@ public class SoundFXManagerEnemy : MonoBehaviour
 {
     private AudioSource audioSource;
 
-
-    public AudioClip[] soundClips;
+    [SerializeField] private AudioClip[] soundClips;
     private Dictionary<string, AudioClip> soundEffects = new Dictionary<string, AudioClip>();
 
-    void Start()
+    private void Start()
     {
-
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-
 
         foreach (var clip in soundClips)
         {
@@ -28,32 +25,20 @@ public class SoundFXManagerEnemy : MonoBehaviour
         }
     }
 
-
     public void PlaySound(string soundName)
     {
-        if (audioSource != null)
+        if (audioSource != null && soundEffects.TryGetValue(soundName, out AudioClip clip))
         {
-
-            if (soundEffects.TryGetValue(soundName, out AudioClip clip))
-            {
-                audioSource.clip = clip;
-                audioSource.Play();
-            }
+            audioSource.clip = clip;
+            audioSource.Play();
         }
-
     }
-
 
     public void StopSound()
     {
-        if(audioSource != null)
+        if (audioSource != null && audioSource.isPlaying)
         {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
+            audioSource.Stop();
         }
-
-
     }
 }

@@ -66,9 +66,9 @@ public class PlayerMovement : MonoBehaviour
         float wheelRotation = moveInput * wheelRotationSpeed * Time.deltaTime;
 
         //Left Wheels
-        foreach(GameObject wheel in leftWheel)
+        foreach (GameObject wheel in leftWheel)
         {
-            if(wheel != null)
+            if (wheel != null)
             {
                 wheel.transform.Rotate(wheelRotation - rotationInput * wheelRotationSpeed * Time.deltaTime, 0.0f, 0.0f);
             }
@@ -85,11 +85,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PlayHitSound()
     {
-        if(healthComponent.CurrentHealth > 0.0f)
+        if (healthComponent.CurrentHealth > 0.0f)
         {
             healthSlider.value = healthComponent.CurrentHealth;
             soundFXManager?.PlaySound("Hit");
-        }  
+        }
     }
     private void ShootBullet()
     {

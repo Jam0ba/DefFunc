@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TransparentObject : MonoBehaviour
 {
-    //Use with Shader in Assets\Shaders\Shader Graphs_TransparentWallShader
+    //Use with Shader in Assets\Shaders\Graphs_TransparentWallShader
     [SerializeField] private Transform targetObject;
     [SerializeField] private LayerMask wallLayer;
 

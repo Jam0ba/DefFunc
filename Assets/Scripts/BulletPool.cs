@@ -10,9 +10,9 @@ public class BulletPool : MonoBehaviour
     private void Awake()
     {
         pool = new ObjectPool<GameObject>(
-            () => CreateBullet(),    
-            bullet => bullet.SetActive(true), 
-            bullet => bullet.SetActive(false), 
+            () => CreateBullet(),
+            bullet => bullet.SetActive(true),
+            bullet => bullet.SetActive(false),
             bullet => Destroy(bullet),
             false,
             initialSize,
