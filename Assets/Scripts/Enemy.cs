@@ -4,11 +4,10 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
 
-    private int DamageAmount = 10;
-
     [SerializeField] private Image healthBarImg;
     [SerializeField] private SoundFXManagerEnemy soundFXManager;
     [SerializeField] private HealthComponent healthComponent;
+    [SerializeField] private EnemyRes enemyOBJ;
 
 
     private void Start()
@@ -17,13 +16,14 @@ public class Enemy : MonoBehaviour
 
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
         if (damageable != null)
         {
-            damageable.TakeDamage(DamageAmount);
+            damageable.TakeDamage(enemyOBJ.enemyDamage);
             player.PlayHitSound();
         }
     }
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if(healthComponent.CurrentHealth > 0.0f)
         {
-            soundFXManager.PlaySound("Hit");
+            soundFXManager.PlaySound(enemyOBJ.enemyHitSound);
             healthBarImg.fillAmount = healthComponent.CurrentHealth / healthComponent.MaxHealth;
         }
         

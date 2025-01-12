@@ -33,7 +33,12 @@ public class Bullet : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(DamageAmount);
-                enemy.PlayHitSound();
+
+                if (enemy != null)
+                {
+                    enemy.PlayHitSound();
+                }
+                
 
             }
             ReturnToPool();
