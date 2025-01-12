@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
-  m_Name: EnemyBehavior Blackboard
+  m_Name: EnemyLittleJerk Blackboard
   m_EditorClassIdentifier: 
   AssetID:
     m_Value0: 16466459139815864849
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
-  m_Name: EnemyBehavior
+  m_Name: EnemyLittleJerk
   m_EditorClassIdentifier: 
   Graphs:
   - rid: 349702150809190545
@@ -193,7 +193,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 16466459139815864849
           m_Value1: 2635228862378777738
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: 1315923885329244028}
         Root:
           rid: 349702150809190546
         BlackboardReference:
@@ -499,7 +499,7 @@ MonoBehaviour:
   - rid: 349702046160782216
   - rid: 349702046160782251
   - rid: 349702139860484162
-  m_VersionTimestamp: 638722678846044615
+  m_VersionTimestamp: 638722846451806633
   m_DebugInfo: {fileID: 1315923885329244028}
   m_RuntimeGraph: {fileID: -6528547701777059835}
   AssetID:
@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
-  m_Name: EnemyBehavior Blackboard
+  m_Name: EnemyLittleJerk Blackboard
   m_EditorClassIdentifier: 
   VersionTimestamp: 638722678846550862
   AssetID:
@@ -1875,6 +1875,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
-  m_Name: EnemyBehavior Debug Info
+  m_Name: EnemyLittleJerk Debug Info
   m_EditorClassIdentifier: 
   m_CodeBreakPointsList: []
