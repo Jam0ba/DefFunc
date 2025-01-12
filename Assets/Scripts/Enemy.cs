@@ -17,18 +17,16 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
         if (damageable != null)
         {
             damageable.TakeDamage(DamageAmount);
             player.PlayHitSound();
         }
     }
-
-
     public void PlayHitSound()
     {
         if(healthComponent.CurrentHealth > 0.0f)

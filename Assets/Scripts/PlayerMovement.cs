@@ -7,18 +7,18 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 5f;
     private float rotationSpeed = 120.0f;
     private float wheelRotationSpeed = 200.0f;
+    private float fireRate = 0.5f;
 
     private float moveInput;
     private float rotationInput;
 
-    [SerializeField] private GameObject[] leftWheel;
-    [SerializeField] private GameObject[] rightWheel;
+    private bool canFire = true;
 
     private Rigidbody rb;
+    private HealthComponent healthComponent;
 
-
-
-    private float fireRate = 0.5f;
+    [SerializeField] private GameObject[] leftWheel;
+    [SerializeField] private GameObject[] rightWheel;
 
     [Space]
     public Transform shootPosition;
@@ -26,21 +26,14 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
     [SerializeField] private Slider healthSlider;
-    private HealthComponent healthComponent;
-
-    
-
-    private bool canFire = true;
-
-
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        healthSlider.maxValue = 100;
-
         healthComponent = GetComponent<HealthComponent>();
         soundFXManager = GetComponentInChildren<SoundFXManagerPlayer>();
+
+        healthSlider.maxValue = healthComponent.MaxHealth;
 
     }
 
@@ -105,12 +98,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayHitSound()
     {
-        healthSlider.maxValue = 100;
-        healthSlider.value = healthComponent.CurrentHealth;
-
-        soundFXManager?.PlaySound("Hit");
-
-        
+        if(healthComponent.CurrentHealth > 0.0f)
+        {
+            healthSlider.value = healthComponent.CurrentHealth;
+            soundFXManager?.PlaySound("Hit");
+        }  
     }
 
     private void ShootBullet()
