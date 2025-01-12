@@ -8,17 +8,19 @@ public class WallTransparencyController : MonoBehaviour
     [SerializeField] private float transparentAlpha = 0.3f;
 
 
+    private Camera _cam;
     private Material originalMaterial;
     private GameObject lastWall;
 
     void Update()
     {
         HandleWallTransparency();
+        _cam = GetComponent<Camera>();
     }
 
     void HandleWallTransparency()
     {
-        Ray ray = new Ray(Camera.main.transform.position, player.position - Camera.main.transform.position);
+        Ray ray = new Ray(_cam.transform.position, player.position - _cam.transform.position);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, wallLayer))
