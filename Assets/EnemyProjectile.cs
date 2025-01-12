@@ -9,7 +9,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 2.5f);
+        Destroy(gameObject, 3.5f);
     }
     private void Update()
     {
@@ -28,9 +28,7 @@ public class EnemyProjectile : MonoBehaviour
             damageable.TakeDamage(enemyOBJ.enemyDamage);
             player.PlayHitSound();
             Destroy(gameObject, 0.15f);
-        }
-
-        
+        }  
     }
 
 }
