@@ -18,22 +18,18 @@ public class BulletPool : MonoBehaviour
             initialSize,
             initialSize);
     }
-
     public IObjectPool<GameObject> GetPool()
     {
         return pool;
     }
-
     public GameObject GetBullet()
     {
         return pool.Get();
     }
-
     public void ReleaseBullet(GameObject bullet)
     {
         pool.Release(bullet);
     }
-
     private GameObject CreateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab);

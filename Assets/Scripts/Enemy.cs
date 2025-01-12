@@ -15,8 +15,6 @@ public class Enemy : MonoBehaviour
         healthComponent = GetComponentInParent<HealthComponent>();
 
     }
-
-
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TransparentObject : MonoBehaviour
 {
+    //Use with Shader in Assets\Shaders\Shader Graphs_TransparentWallShader
     [SerializeField] private Transform targetObject;
     [SerializeField] private LayerMask wallLayer;
 
@@ -21,7 +22,7 @@ public class TransparentObject : MonoBehaviour
 
 
         Vector3 offset = targetObject.position - transform.position;
-        RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, wallMask);
+        RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, wallLayer);
 
         for (int i = 0; i < hitObjects.Length; ++i)
         {

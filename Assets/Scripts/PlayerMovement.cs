@@ -38,37 +38,21 @@ public class PlayerMovement : MonoBehaviour
         healthSlider.maxValue = healthComponent.MaxHealth;
 
     }
-
     private void Update()
     {
-
-        if (Input.GetMouseButton(0) & canFire)
-        {
-            ShootBullet();
-
-            soundFXManager?.PlaySound("Shoot");
-        }
-
-        moveInput = Input.GetAxis("Vertical");
-        rotationInput = Input.GetAxis("Horizontal");
-
-        TankWheelRotation(moveInput, rotationInput);
-
+        MovementInput();
+        MouseInput();
 
     }
-
     private void FixedUpdate()
     {
         MoveTank(moveInput);
         RotateTank(rotationInput);
     }
-
     private void MoveTank(float input)
     {
         Vector3 moveDirection = transform.forward * input * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + moveDirection);
-
-
 
     }
     private void RotateTank(float input)
@@ -77,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         rb.MoveRotation(rb.rotation * turnRotation);
     }
-
     private void TankWheelRotation(float moveInput, float rotationInput)
     {
         float wheelRotation = moveInput * wheelRotationSpeed * Time.deltaTime;
@@ -100,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
     public void PlayHitSound()
     {
         if(healthComponent.CurrentHealth > 0.0f)
@@ -109,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
             soundFXManager?.PlaySound("Hit");
         }  
     }
-
     private void ShootBullet()
     {
         if (bulletPool != null)
@@ -129,6 +110,19 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
         canFire = true;
     }
+    private void MouseInput()
+    {
+        if (Input.GetMouseButton(0) & canFire)
+        {
+            ShootBullet();
+            soundFXManager?.PlaySound("Shoot");
+        }
+    }
+    private void MovementInput()
+    {
+        moveInput = Input.GetAxis("Vertical");
+        rotationInput = Input.GetAxis("Horizontal");
 
-
+        TankWheelRotation(moveInput, rotationInput);
+    }
 }

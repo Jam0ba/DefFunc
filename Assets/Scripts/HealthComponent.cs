@@ -5,7 +5,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _maxHP = 100;
     [SerializeField] private float _currentHP;
-
     public float CurrentHealth { get => _currentHP; private set => _currentHP = value; }
     public float MaxHealth { get => _maxHP; private set => _maxHP = value; }
 
@@ -16,7 +15,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
         CurrentHealth = MaxHealth;
 
     }
-
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
@@ -27,8 +25,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
             OnDeath();
         }
     }
-    
-
     private void OnDeath()
     {
         Destroy(gameObject);

@@ -17,8 +17,6 @@ public class EnemyProjectile : MonoBehaviour
         transform.Translate(Vector3.forward * 10f * Time.deltaTime);
         
     }
-
-
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();

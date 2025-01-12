@@ -16,13 +16,12 @@ public class Bullet : MonoBehaviour
         }
 
     }
-
     private void Update()
     {
-       
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
+        BulletMovement();
 
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         
@@ -38,14 +37,10 @@ public class Bullet : MonoBehaviour
                 {
                     enemy.PlayHitSound();
                 }
-                
-
             }
             ReturnToPool();
         }
     }
-
-
     private void ReturnToPool()
     {
       
@@ -54,4 +49,8 @@ public class Bullet : MonoBehaviour
        gameObject.SetActive(false);
        bulletPool.Release(gameObject);
     }
+    private void BulletMovement()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }    
 }
