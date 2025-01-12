@@ -130,4 +130,9 @@ public class PlayerMovement : MonoBehaviour
         canFire = true;
     }
 
+    public void Testing()
+    {
+        Debug.Log("Test Github");
+    }
+
 }
