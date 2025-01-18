@@ -31,14 +31,13 @@ public class Enemy : MonoBehaviour
     {
         if (healthComponent.CurrentHealth > 0.0f)
         {
-            soundFXManager.PlaySound(enemyOBJ.enemyHitSound);
             healthBarImg.fillAmount = healthComponent.CurrentHealth / healthComponent.MaxHealth;
         }
         else
         {
-            GameObject Particle = Instantiate(BOOMParticle, transform.position, transform.rotation);
 
-        }
+            GameObject Particle = Instantiate(BOOMParticle, transform.position, transform.rotation);
+        }      
         soundFXManager?.PlaySound(enemyOBJ.enemyHitSound);
     }
 }

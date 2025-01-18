@@ -4,7 +4,7 @@ using UnityEngine;
 public class BulletPool : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    private int initialSize = 100;
+    private int initialSize = 300;
     private IObjectPool<GameObject> pool;
 
     private void Awake()

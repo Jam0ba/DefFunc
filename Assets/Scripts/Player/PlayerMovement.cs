@@ -5,13 +5,19 @@ using static UnityEngine.ParticleSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float moveSpeed = 8f;
+
+    private float maxSpeed = 30f;
+    private float moveSpeed = 22f;
+    private float traction = 1f;
+    private float Drag = 0.98f;
     private float rotationSpeed = 120.0f;
-    private float wheelRotationSpeed = 800.0f;
-    private float fireRate = 0.5f;
+    private float wheelRotationSpeed = 1200.0f;
+    private float fireRate = 0.35f;
+
 
     private float moveInput;
     private float rotationInput;
+    private float previousInput = 0f;
 
     private bool canFire = true;
 
@@ -27,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [SerializeField] private SoundFXManagerPlayer soundFXManager;
     [SerializeField] private Slider healthSlider;
-    [SerializeField] private ParticleSystem exhaust;
+    [SerializeField] private ParticleSystem[] exhaustSmoke;
 
     private void Start()
     {
@@ -49,12 +55,23 @@ public class PlayerMovement : MonoBehaviour
         MoveTank(moveInput);
         RotateTank(rotationInput);
     }
+
+    
+    
     private void MoveTank(float input)
     {
-        Vector3 moveDirection = transform.forward * input * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + moveDirection);
+        Vector3 moveDirection = transform.forward * input * moveSpeed * rb.mass;
+        rb.linearVelocity += moveDirection * Time.fixedDeltaTime;
+
+        OutputExhaustSmoke();
+
+        moveDirection *= Drag;
+        moveDirection = Vector3.ClampMagnitude(moveDirection, maxSpeed);
+        moveDirection = Vector3.Lerp(moveDirection.normalized, transform.forward, traction * Time.fixedDeltaTime) * moveDirection.magnitude;
+
 
     }
+    
     private void RotateTank(float input)
     {
         float rotation = input * rotationSpeed * Time.fixedDeltaTime;
@@ -83,6 +100,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    private void OutputExhaustSmoke()
+    {
+        foreach (var smoke in exhaustSmoke)
+        {
+            var emission = smoke.emission;
+            emission.rateOverTime = Mathf.Abs(moveInput) > 0f ? 20f : 5f;
+        }
+    }
     public void PlayHitSound()
     {
         if (healthComponent.CurrentHealth > 0.0f)
@@ -104,18 +129,13 @@ public class PlayerMovement : MonoBehaviour
             bulletTrail.Clear();
         }
     }
-    private IEnumerator FireRate()
-    {
-        canFire = false;
-        yield return new WaitForSeconds(fireRate);
-        canFire = true;
-    }
     private void MouseInput()
     {
         if (Input.GetMouseButton(0) & canFire)
         {
             ShootBullet();
             soundFXManager?.PlaySound("Shoot");
+            
         }
     }
     private void MovementInput()
@@ -124,5 +144,12 @@ public class PlayerMovement : MonoBehaviour
         rotationInput = Input.GetAxis("Horizontal");
 
         TankWheelRotation(moveInput, rotationInput);
+    }
+
+    private IEnumerator FireRate()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
     }
 }

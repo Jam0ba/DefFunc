@@ -37,6 +37,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     private void OnDeath()
     {
-        Destroy(gameObject, 0.09f);
+        Destroy(gameObject, 0.1f);
     }
 }

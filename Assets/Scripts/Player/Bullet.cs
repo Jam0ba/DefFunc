@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
     public IObjectPool<GameObject> bulletPool;
-    private float speed = 20f;
+    private float speed = 30f;
     private float DamageAmount = 32;
 
     private void Start()
@@ -13,6 +14,7 @@ public class Bullet : MonoBehaviour
         if (bulletPool == null)
         {
             bulletPool = FindFirstObjectByType<BulletPool>()?.GetPool();
+            
         }
 
     }
@@ -24,7 +26,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-
+        Debug.Log("Wall");
         if (bulletPool != null)
         {
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
@@ -40,6 +42,7 @@ public class Bullet : MonoBehaviour
             }
             ReturnToPool();
         }
+        
     }
     private void ReturnToPool()
     {
@@ -53,4 +56,5 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
+
 }

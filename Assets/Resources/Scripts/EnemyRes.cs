@@ -13,6 +13,7 @@ public class EnemyRes : ScriptableObject
     public string enemyHitSound;
     public string enemyAttackSound;
     public string enemyWalkingSound;
+    public string enemyExplosionSound;
     [Space]
     public GameObject enemyPrefab;
     public GameObject enemyModel;

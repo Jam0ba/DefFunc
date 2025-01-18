@@ -19,5 +19,6 @@ MonoBehaviour:
   enemyHitSound: Hit
   enemyAttackSound: Attack
   enemyWalkingSound: Walk
+  enemyExplosionSound: Explosion
   enemyPrefab: {fileID: 3770396568593544232, guid: c7668aa85050b7141936509b35c2114d, type: 3}
   enemyModel: {fileID: 0}
